@@ -1,36 +1,43 @@
-let totalKalori = 0;
+// Daftar makanan dan kalorinya (per porsi)
+const makananList = {
+  "Tempe": 150,
+  "Ayam": 250,
+  "Sayur": 80,
+  "Susu": 120
+};
 
-const makananSelect = document.getElementById("makanan");
-const gramInput = document.getElementById("gram");
-const daftarKalori = document.getElementById("daftarKalori");
-const totalKaloriText = document.getElementById("totalKalori");
-const tambahBtn = document.getElementById("tambahBtn");
-const resetBtn = document.getElementById("resetBtn");
+// Saran gizi berdasarkan makanan yang dipilih
+const giziSaran = {
+  "Tempe": "Tempe kaya protein nabati dan serat. Cocok untuk energi stabil dan pencernaan sehat.",
+  "Ayam": "Ayam adalah sumber protein hewani yang bagus untuk pembentukan otot.",
+  "Sayur": "Sayur membantu memenuhi kebutuhan serat, vitamin, dan menjaga metabolisme.",
+  "Susu": "Susu memberikan kalsium dan energi tambahan untuk aktivitas harian."
+};
 
-tambahBtn.addEventListener("click", () => {
-    const kaloriPer100 = parseFloat(makananSelect.value);
-    const gram = parseFloat(gramInput.value);
+function hitungKalori() {
+  const menu = document.getElementById('menu').value;
+  const hasil = document.getElementById('hasil');
 
-    if (isNaN(kaloriPer100) || isNaN(gram)) {
-        alert("Pilih makanan dan masukkan jumlah gram!");
-        return;
-    }
+  if (!menu || !makananList[menu]) {
+    hasil.innerHTML = "Pilih makanan yang valid dari daftar.";
+    return;
+  }
 
-    const kalori = (kaloriPer100 / 100) * gram;
-    totalKalori += kalori;
+  const kalori = makananList[menu];
+  let rekomendasi = "";
 
-    const listItem = document.createElement("li");
-    listItem.textContent = `${makananSelect.options[makananSelect.selectedIndex].text} - ${gram}g = ${kalori.toFixed(2)} kcal`;
-    daftarKalori.appendChild(listItem);
+  if (kalori > 300) {
+    rekomendasi = `Kalori makanan ini cukup tinggi.<br><br>Saran aktivitas: <br>• Jalan cepat 15 menit <br>• Kurangi tambahan karbohidrat berlebih.`;
+  } else if (kalori < 100) {
+    rekomendasi = `Kalori makanan ini cukup rendah.<br><br>Saran tambahan: <br>• Tambahkan lauk lain agar kebutuhan energi tercukupi.`;
+  } else {
+    rekomendasi = `Kalori makanan ini cukup seimbang untuk bekal harian Anda.`;
+  }
 
-    totalKaloriText.textContent = `Total Kalori: ${totalKalori.toFixed(2)} kcal`;
-
-    gramInput.value = "";
-    makananSelect.value = "";
-});
-
-resetBtn.addEventListener("click", () => {
-    totalKalori = 0;
-    daftarKalori.innerHTML = "";
-    totalKaloriText.textContent = "Total Kalori: 0 kcal";
-});
+  hasil.innerHTML = `
+    <strong>Makanan:</strong> ${menu}<br>
+    <strong>Kalori:</strong> ${kalori} kcal<br><br>
+    <strong>Saran Gizi:</strong> ${giziSaran[menu]}<br><br>
+    <strong>Rekomendasi:</strong><br>${rekomendasi}
+  `;
+}
