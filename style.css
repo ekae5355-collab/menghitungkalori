@@ -149,3 +149,9 @@ button:hover {
   color: #555;
   font-size: 0.9rem;
 }
+/* ===== MAKANAN TERPILIH ===== */
+.makanan-item.selected {
+    border: 3px solid #ff57c4;  /* border pink cantik */
+    background: #ffe6f9;        /* background sedikit lebih terang */
+    transform: scale(1.05);     /* efek zoom kecil */
+}
