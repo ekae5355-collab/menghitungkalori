@@ -154,3 +154,7 @@ button:hover {
     transform: scale(1.15);
     box-shadow: 0 0 15px rgba(255, 200, 240, 0.6);
 }
+
+.makanan-item {
+    cursor: pointer;
+}
