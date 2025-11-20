@@ -15,8 +15,12 @@ const makanan = [
     { nama: "🍟 Kentang Goreng", kalori: 312 }
 ];
 
-// ====== RENDER MAKANAN KE HTML ======
 const makananList = document.getElementById("makananList");
+const totalDisplay = document.getElementById("totalKalori");
+let totalKalori = 0;
+let selectedItems = new Set(); // untuk track makanan yang dipilih
+
+// ====== RENDER MAKANAN KE HTML ======
 makanan.forEach((item, index) => {
     const div = document.createElement("div");
     div.className = "makanan-item";
@@ -25,17 +29,24 @@ makanan.forEach((item, index) => {
         <div>${item.nama.replace(/^[^\s]+/, "")}</div>
         <small>${item.kalori} kcal</small>
     `;
-    div.addEventListener("click", () => pilihMakanan(index));
+
+    // klik makanan → toggle pilih/unselect
+    div.addEventListener("click", () => {
+        if (selectedItems.has(index)) {
+            selectedItems.delete(index);
+            totalKalori -= item.kalori;
+            div.classList.remove("selected");
+        } else {
+            selectedItems.add(index);
+            totalKalori += item.kalori;
+            div.classList.add("selected");
+        }
+        // update total kalori realtime
+        totalDisplay.textContent = `Total Kalori: ${totalKalori} kcal`;
+    });
+
     makananList.appendChild(div);
 });
-
-let totalKalori = 0;
-
-// ====== SAAT MAKANAN DIPILIH ======
-function pilihMakanan(i) {
-    totalKalori += makanan[i].kalori;
-    alert(`${makanan[i].nama} ditambahkan! (+${makanan[i].kalori} kcal)`);
-}
 
 // ====== TOMBOL HITUNG ======
 document.getElementById("hitungBtn").addEventListener("click", () => {
@@ -45,10 +56,10 @@ document.getElementById("hitungBtn").addEventListener("click", () => {
 
     if (!target) return alert("Isi target kalori dulu!");
 
+    // kategori kalori
     let kategori = "";
     let pesan = "";
 
-    // ====== PENILAIAN KALORI ======
     if (totalKalori < target - 100) {
         kategori = "Kalori Kurang ❗";
         pesan = "Bekal kamu masih kurang. Tambahkan makanan berkarbohidrat seperti nasi, roti, atau ayam.";
@@ -62,9 +73,8 @@ document.getElementById("hitungBtn").addEventListener("click", () => {
         pesan = "Bekal kamu seimbang! Bagus untuk menjalani aktivitas harian.";
     }
 
-    // ====== SARAN AKTIVITAS LENGKAP ======
+    // saran aktivitas
     let saranAktivitas = "";
-
     if (aktivitas === "ringan") {
         saranAktivitas = 
             "🌼 Aktivitasmu hari ini <b>ringan</b>. Tubuh tidak butuh terlalu banyak kalori.<br><br>" +
@@ -73,26 +83,24 @@ document.getElementById("hitungBtn").addEventListener("click", () => {
             "• 🧘‍♀️ Stretching ringan<br>" +
             "• 💧 Banyak minum air putih<br>";
     }
-
     else if (aktivitas === "sedang") {
         saranAktivitas = 
-            "🌸 Kamu memiliki aktivitas <b>sedang</b>. Tubuh memerlukan kalori yang cukup dan seimbang.<br><br>" +
+            "🌸 Aktivitas sedang, kalori cukup seimbang.<br><br>" +
             "➤ Rekomendasi aktivitas:<br>" +
             "• 🚴‍♂️ Bersepeda ringan 20–30 menit<br>" +
-            "• 🤸‍♀️ Senam atau aktivitas tubuh ringan<br>" +
+            "• 🤸‍♀️ Senam ringan<br>" +
             "• 🍎 Makan buah untuk energi tambahan<br>";
     }
-
-    else { 
+    else {
         saranAktivitas = 
-            "🔥 Aktivitasmu <b>berat</b>! Butuh energi lebih banyak untuk menjaga stamina.<br><br>" +
+            "🔥 Aktivitas berat, butuh energi ekstra.<br><br>" +
             "➤ Rekomendasi aktivitas:<br>" +
             "• 🏃‍♂️ Olahraga intens 30 menit<br>" +
-            "• 💪 Latihan kekuatan tubuh seperti push-up<br>" +
-            "• 🍗 Makan makanan berprotein seperti ayam, telur, tempe<br>";
+            "• 💪 Latihan kekuatan<br>" +
+            "• 🍗 Makan protein cukup<br>";
     }
 
-    // ====== OUTPUT FINAL ======
+    // output final
     hasilArea.innerHTML = `
         <h3>Total Kalori: ${totalKalori} kcal</h3>
         <p><strong>${kategori}</strong></p>
