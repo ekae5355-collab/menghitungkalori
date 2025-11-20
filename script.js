@@ -60,14 +60,37 @@ document.getElementById("hitungBtn").addEventListener("click", () => {
         pesan = "Bekal kamu seimbang! Bagus untuk menjalani aktivitas harian.";
     }
 
-    // Saran aktivitas
-    let saranAktivitas = "";
-    if (aktivitas === "ringan")
-        saranAktivitas = "Aktivitasmu ringan, jadi kebutuhan kalorimu tidak terlalu banyak.";
-    else if (aktivitas === "sedang")
-        saranAktivitas = "Aktivitas sedang membutuhkan kalori yang cukup dan seimbang.";
-    else
-        saranAktivitas = "Aktivitas berat memerlukan kalori lebih! Pastikan makan cukup protein dan karbohidrat.";
+    // 🌸 Saran Aktivitas Berdasarkan Level Aktivitas
+let saranAktivitas = "";
+
+if (aktivitas === "ringan") {
+    saranAktivitas = 
+        "🌼 Aktivitasmu hari ini tergolong <b>ringan</b>. " +
+        "Tubuh tidak membutuhkan terlalu banyak kalori. " +
+        "Disarankan tetap melakukan gerakan kecil agar tubuh tidak kaku, seperti:<br>" +
+        "• 🚶‍♀️ Jalan santai 10–15 menit<br>" +
+        "• 🧘‍♀️ Stretching ringan<br>" +
+        "• 💧 Banyak minum air putih";
+}
+
+else if (aktivitas === "sedang") {
+    saranAktivitas = 
+        "🌸 Kamu memiliki aktivitas <b>sedang</b>. " +
+        "Tubuh memerlukan kalori yang cukup dan seimbang. Cobalah:<br>" +
+        "• 🚴‍♂️ Bersepeda ringan 20–30 menit<br>" +
+        "• 🤸‍♀️ Senam ringan<br>" +
+        "• 🍎 Konsumsi buah untuk energi tambahan";
+}
+
+else {  // aktivitas berat
+    saranAktivitas = 
+        "🔥 Hari ini aktivitasmu <b>berat</b>! Tubuh butuh energi ekstra. " +
+        "Pastikan asupanmu cukup, terutama karbohidrat dan protein. Aktivitas yang cocok:<br>" +
+        "• 🏃‍♂️ Olahraga intens 30 menit<br>" +
+        "• 💪 Latihan kekuatan tubuh<br>" +
+        "• 🍗 Tambah makanan berprotein seperti ayam, telur, tempe";
+}
+
 
     // Output HTML
     hasilArea.innerHTML = `
