@@ -5,12 +5,10 @@
   box-sizing: border-box;
 }
 
-/* 🌈 BACKGROUND PASTEL CANTIK BERGERAK */
 body {
-  background: linear-gradient(135deg, #ffe6f2, #e3f1ff, #eaffea, #fff3d9);
+  background: linear-gradient(135deg, #ffd8e8, #ffe8f2, #fff2fa);
   background-size: 400% 400%;
   animation: softMove 12s ease-in-out infinite;
-  padding-bottom: 50px;
 }
 
 @keyframes softMove {
@@ -35,7 +33,6 @@ body {
   padding: 15px;
 }
 
-/* 🌟 PANEL CUTE GLASSMORPHISM */
 .panel {
   background: rgba(255,255,255,0.58);
   padding: 20px;
@@ -52,14 +49,12 @@ body {
   letter-spacing: 1px;
 }
 
-/* 🧁 GRID MAKANAN */
 .makanan-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
   gap: 15px;
 }
 
-/* 🍡 CARD MAKANAN */
 .makanan-item {
   background: white;
   padding: 15px;
@@ -88,7 +83,6 @@ body {
   100% { transform: scale(1); }
 }
 
-/* 🌼 INPUT & SELECT */
 input, select {
   width: 100%;
   padding: 12px;
@@ -105,7 +99,6 @@ input:focus, select:focus {
   box-shadow: 0 3px 12px rgba(255,120,180,0.25);
 }
 
-/* 🍬 BUTTON */
 button {
   width: 100%;
   padding: 14px;
@@ -124,7 +117,6 @@ button:hover {
   background: linear-gradient(135deg, #ff74ce, #ff57c4);
 }
 
-/* 💗 HASIL BOX */
 .hasil-box {
   background: white;
   padding: 18px;
@@ -134,7 +126,6 @@ button:hover {
   line-height: 1.6;
 }
 
-/* 🎀 FOOTER */
 .footer {
   text-align: center;
   margin-top: 20px;
