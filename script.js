@@ -1,10 +1,13 @@
-// ==== Suara Klik ====
+// =============================
+// SUARA KLIK
+// =============================
 const clickSound = new Audio("click.mp3");
 clickSound.volume = 0.5;
 
-// =========================
+
+// =============================
 // DATA MAKANAN
-// =========================
+// =============================
 const makanan = [
     { nama: "🍗 Ayam Goreng", kalori: 260 },
     { nama: "🥚 Telur Rebus", kalori: 78 },
@@ -24,6 +27,11 @@ const makanan = [
 const makananList = document.getElementById("makananList");
 let totalKalori = 0;
 let selectedItems = new Set();
+
+
+// =============================
+// UPDATE TOTAL KALORI DI PANEL MAKANAN
+// =============================
 function updateTotalDisplay() {
     const totalDisplay = document.getElementById("totalKalori");
     if (totalDisplay) {
@@ -32,9 +40,9 @@ function updateTotalDisplay() {
 }
 
 
-// =========================
-// RENDER ITEM MAKANAN KE HTML
-// =========================
+// =============================
+// RENDER MAKANAN + KLIK
+// =============================
 makanan.forEach((item, index) => {
     const div = document.createElement("div");
     div.className = "makanan-item";
@@ -46,14 +54,16 @@ makanan.forEach((item, index) => {
     `;
 
     div.addEventListener("click", () => {
-        // === Efek suara ===
-    clickSound.currentTime = 0;
-    clickSound.play();
 
-    // === Animasi pop ===
-    div.classList.add("pop");
-    setTimeout(() => div.classList.remove("pop"), 200);
-        
+        // Suara klik
+        clickSound.currentTime = 0;
+        clickSound.play();
+
+        // Animasi pop
+        div.classList.add("pop");
+        setTimeout(() => div.classList.remove("pop"), 200);
+
+        // Tambah / Hapus Pilihan
         if (selectedItems.has(index)) {
             selectedItems.delete(index);
             totalKalori -= item.kalori;
@@ -65,31 +75,21 @@ makanan.forEach((item, index) => {
         }
 
         updateTotalDisplay();
+        updateHasilDisplay(); // ⬅ ditambahkan supaya realtime
     });
 
     makananList.appendChild(div);
 });
 
 
-// =========================
-// UPDATE TOTAL KALORI REALTIME
-// =========================
-function updateTotalDisplay() {
-    const hasilBox = document.getElementById("hasil");
-    hasilBox.innerHTML = `
-        <h3>Total Kalori Sementara: ${totalKalori} kcal</h3>
-    `;
-
-    updateProgress();
-}
-
-
-// =========================
-// PROGRESS BAR
-// =========================
+// =============================
+// UPDATE PROGRESS BAR
+// =============================
 function updateProgress() {
     const target = Number(document.getElementById("targetKalori").value);
     const fill = document.getElementById("progressFill");
+
+    if (!fill) return;
 
     if (!target) {
         fill.style.width = "0%";
@@ -103,9 +103,24 @@ function updateProgress() {
 }
 
 
-// =========================
+// =============================
+// UPDATE TOTAL KALORI DI PANEL HASIL
+// =============================
+function updateHasilDisplay() {
+    const hasilBox = document.getElementById("hasil");
+
+    hasilBox.innerHTML = `
+        <h3>Total Kalori Sementara: ${totalKalori} kcal</h3>
+    `;
+
+    updateProgress();
+}
+
+
+
+// =============================
 // TOMBOL HITUNG
-// =========================
+// =============================
 document.getElementById("hitungBtn").addEventListener("click", () => {
     const target = Number(document.getElementById("targetKalori").value);
     const kondisi = document.getElementById("aktivitas").value;
@@ -113,55 +128,49 @@ document.getElementById("hitungBtn").addEventListener("click", () => {
 
     if (!target) return alert("Isi target kalori dulu!");
 
-    // Penilaian
     let kategori = "";
     let pesan = "";
 
     if (totalKalori < target - 100) {
         kategori = "Kalori Kurang ❗";
-        pesan = "Bekal kamu masih kurang nih. Tambahin makanan seperti nasi, roti, atau ayam biar kuat seharian 💪";
+        pesan = "Bekal kamu masih kurang. Tambahkan makanan seperti nasi, roti, atau ayam.";
     } 
     else if (totalKalori > target + 100) {
-        kategori = "Kalori Kebanyakan ⚠️";
-        pesan = "Kalorinya agak berlebih… Kurangi gorengan atau pilih makanan lebih ringan 😊";
+        kategori = "Kalori Berlebih ⚠️";
+        pesan = "Kalorinya agak berlebih... Kurangi gorengan atau pilih makanan lebih ringan.";
     } 
     else {
         kategori = "Kalori Pas 👍";
-        pesan = "Bekal kamu udah pas dan seimbang! Mantap buat menjalani hari ✨";
+        pesan = "Bekal kamu seimbang! Mantap untuk menjalani hari.";
     }
 
-    // Saran berdasarkan keadaan hari ini
+    // Saran berdasarkan kondisi
     let saranAktivitas = "";
-
     if (kondisi === "ringan") {
         saranAktivitas = `
-            Hari kamu kelihatannya santai 😌<br>
-            Rekomendasi ringan:<br>
+            Kamu terlihat santai hari ini 😌<br>
             • Jalan pelan 10 menit<br>
-            • Stretching<br>
-            • Minum air putih cukup 💧
+            • Stretching ringan<br>
+            • Banyak minum air 💧
         `;
-    }
+    } 
     else if (kondisi === "sedang") {
         saranAktivitas = `
-            Hari ini cukup aktif ✨<br>
-            Rekomendasi:<br>
+            Kamu cukup aktif ✨<br>
             • Senam ringan<br>
             • Bersepeda ringan<br>
-            • Makan buah untuk tenaga 🍎
+            • Buah untuk energi 🍎
         `;
-    }
+    } 
     else {
         saranAktivitas = `
-            Wah, hari kamu berat ya 🔥<br>
-            Rekomendasi aktivitas:<br>
+            Hari kamu cukup berat 🔥<br>
             • Olahraga 20–30 menit<br>
             • Latihan kekuatan<br>
-            • Asupan protein cukup 🍗
+            • Protein cukup 🍗
         `;
     }
 
-    // Output ke layar
     hasilArea.innerHTML = `
         <h3>Total Kalori: ${totalKalori} kcal</h3>
         <p><strong>${kategori}</strong></p>
@@ -176,4 +185,6 @@ document.getElementById("hitungBtn").addEventListener("click", () => {
             ${saranAktivitas}
         </div>
     `;
+
+    updateProgress();
 });
