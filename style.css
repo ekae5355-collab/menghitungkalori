@@ -1,1 +1,106 @@
+/* 🌈 Background pastel lembut */
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #ffd9ec, #dff2ff, #e8ffd9);
+  background-size: 300% 300%;
+  animation: bgAnim 10s infinite alternate;
+}
+
+@keyframes bgAnim {
+  0% { background-position: left; }
+  100% { background-position: right; }
+}
+
+.top h1 {
+  text-align: center;
+  padding: 20px;
+  color: #ff6bb3;
+  text-shadow: 2px 2px white;
+}
+
+/* CARD AREA */
+.container {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+}
+
+.panel {
+  background: rgba(255,255,255,0.6);
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 18px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+/* MAKANAN LIST */
+.makanan-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax(130px,1fr));
+  gap: 12px;
+}
+
+.makanan-item {
+  background: white;
+  padding: 15px;
+  border-radius: 15px;
+  text-align: center;
+  cursor: pointer;
+  transition: .2s;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.makanan-item:hover {
+  background: #ffeaff;
+  transform: scale(1.05);
+}
+
+.makanan-item .icon {
+  font-size: 2rem;
+}
+
+/* INPUT */
+input, select {
+  width: 100%;
+  padding: 12px;
+  border-radius: 15px;
+  border: none;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* BUTTON */
+button {
+  width: 100%;
+  background: #ff8ad9;
+  border: none;
+  color: white;
+  padding: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 15px;
+  transition: .2s;
+}
+
+button:hover {
+  background: #ff6bcf;
+  transform: scale(1.03);
+}
+
+/* HASIL */
+.hasil-box {
+  background: white;
+  padding: 15px;
+  border-radius: 15px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+  min-height: 70px;
+}
+
+.footer {
+  text-align: center;
+  padding: 20px;
+  color: #555;
+}
 
