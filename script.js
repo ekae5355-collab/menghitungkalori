@@ -1,3 +1,4 @@
+// ====== DATA MAKANAN ======
 const makanan = [
     { nama: "🍗 Ayam Goreng", kalori: 260 },
     { nama: "🥚 Telur Rebus", kalori: 78 },
@@ -14,7 +15,7 @@ const makanan = [
     { nama: "🍟 Kentang Goreng", kalori: 312 }
 ];
 
-// Render makanan ke HTML
+// ====== RENDER MAKANAN KE HTML ======
 const makananList = document.getElementById("makananList");
 makanan.forEach((item, index) => {
     const div = document.createElement("div");
@@ -30,13 +31,13 @@ makanan.forEach((item, index) => {
 
 let totalKalori = 0;
 
-// Saat makanan dipilih
+// ====== SAAT MAKANAN DIPILIH ======
 function pilihMakanan(i) {
     totalKalori += makanan[i].kalori;
     alert(`${makanan[i].nama} ditambahkan! (+${makanan[i].kalori} kcal)`);
 }
 
-// Tombol hitung ditekan
+// ====== TOMBOL HITUNG ======
 document.getElementById("hitungBtn").addEventListener("click", () => {
     const target = Number(document.getElementById("targetKalori").value);
     const aktivitas = document.getElementById("aktivitas").value;
@@ -47,6 +48,7 @@ document.getElementById("hitungBtn").addEventListener("click", () => {
     let kategori = "";
     let pesan = "";
 
+    // ====== PENILAIAN KALORI ======
     if (totalKalori < target - 100) {
         kategori = "Kalori Kurang ❗";
         pesan = "Bekal kamu masih kurang. Tambahkan makanan berkarbohidrat seperti nasi, roti, atau ayam.";
@@ -60,39 +62,37 @@ document.getElementById("hitungBtn").addEventListener("click", () => {
         pesan = "Bekal kamu seimbang! Bagus untuk menjalani aktivitas harian.";
     }
 
-    // 🌸 Saran Aktivitas Berdasarkan Level Aktivitas
-let saranAktivitas = "";
+    // ====== SARAN AKTIVITAS LENGKAP ======
+    let saranAktivitas = "";
 
-if (aktivitas === "ringan") {
-    saranAktivitas = 
-        "🌼 Aktivitasmu hari ini tergolong <b>ringan</b>. " +
-        "Tubuh tidak membutuhkan terlalu banyak kalori. " +
-        "Disarankan tetap melakukan gerakan kecil agar tubuh tidak kaku, seperti:<br>" +
-        "• 🚶‍♀️ Jalan santai 10–15 menit<br>" +
-        "• 🧘‍♀️ Stretching ringan<br>" +
-        "• 💧 Banyak minum air putih";
-}
+    if (aktivitas === "ringan") {
+        saranAktivitas = 
+            "🌼 Aktivitasmu hari ini <b>ringan</b>. Tubuh tidak butuh terlalu banyak kalori.<br><br>" +
+            "➤ Rekomendasi aktivitas:<br>" +
+            "• 🚶‍♀️ Jalan santai 10–15 menit<br>" +
+            "• 🧘‍♀️ Stretching ringan<br>" +
+            "• 💧 Banyak minum air putih<br>";
+    }
 
-else if (aktivitas === "sedang") {
-    saranAktivitas = 
-        "🌸 Kamu memiliki aktivitas <b>sedang</b>. " +
-        "Tubuh memerlukan kalori yang cukup dan seimbang. Cobalah:<br>" +
-        "• 🚴‍♂️ Bersepeda ringan 20–30 menit<br>" +
-        "• 🤸‍♀️ Senam ringan<br>" +
-        "• 🍎 Konsumsi buah untuk energi tambahan";
-}
+    else if (aktivitas === "sedang") {
+        saranAktivitas = 
+            "🌸 Kamu memiliki aktivitas <b>sedang</b>. Tubuh memerlukan kalori yang cukup dan seimbang.<br><br>" +
+            "➤ Rekomendasi aktivitas:<br>" +
+            "• 🚴‍♂️ Bersepeda ringan 20–30 menit<br>" +
+            "• 🤸‍♀️ Senam atau aktivitas tubuh ringan<br>" +
+            "• 🍎 Makan buah untuk energi tambahan<br>";
+    }
 
-else {  // aktivitas berat
-    saranAktivitas = 
-        "🔥 Hari ini aktivitasmu <b>berat</b>! Tubuh butuh energi ekstra. " +
-        "Pastikan asupanmu cukup, terutama karbohidrat dan protein. Aktivitas yang cocok:<br>" +
-        "• 🏃‍♂️ Olahraga intens 30 menit<br>" +
-        "• 💪 Latihan kekuatan tubuh<br>" +
-        "• 🍗 Tambah makanan berprotein seperti ayam, telur, tempe";
-}
+    else { 
+        saranAktivitas = 
+            "🔥 Aktivitasmu <b>berat</b>! Butuh energi lebih banyak untuk menjaga stamina.<br><br>" +
+            "➤ Rekomendasi aktivitas:<br>" +
+            "• 🏃‍♂️ Olahraga intens 30 menit<br>" +
+            "• 💪 Latihan kekuatan tubuh seperti push-up<br>" +
+            "• 🍗 Makan makanan berprotein seperti ayam, telur, tempe<br>";
+    }
 
-
-    // Output HTML
+    // ====== OUTPUT FINAL ======
     hasilArea.innerHTML = `
         <h3>Total Kalori: ${totalKalori} kcal</h3>
         <p><strong>${kategori}</strong></p>
