@@ -1,4 +1,6 @@
-/* ===== FONT GLOBAL ===== */
+/* =========================================================
+   GLOBAL FONT & BACKGROUND
+========================================================= */
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
@@ -8,7 +10,7 @@ body {
     background-size: 400% 400%;
 }
 
-/* ===== ANIMASI BACKGROUND PELANGI ===== */
+/* Background gradasi pelangi animasi */
 @keyframes rainbowBG {
     0% { background: linear-gradient(120deg, #ffccf9, #fcc2ff, #c4b5fd); }
     25% { background: linear-gradient(120deg, #c4b5fd, #a5f3fc, #ffccf9); }
@@ -17,7 +19,9 @@ body {
     100% { background: linear-gradient(120deg, #ffccf9, #fcc2ff, #c4b5fd); }
 }
 
-/* ===== HEADER ===== */
+/* =========================================================
+   HEADER
+========================================================= */
 header.top {
     text-align: center;
     padding: 20px;
@@ -27,30 +31,36 @@ header.top {
     text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
 }
 
-/* ===== MAIN CONTAINER ===== */
+/* =========================================================
+   MAIN CONTAINER
+========================================================= */
 .container {
     max-width: 900px;
     margin: auto;
     padding: 20px;
 }
 
-/* ===== PANEL (KOTAK) ===== */
+/* =========================================================
+   PANEL (CARD)
+========================================================= */
 .panel {
     background: rgba(255, 255, 255, 0.75);
     backdrop-filter: blur(8px);
     padding: 20px;
     margin-bottom: 25px;
     border-radius: 20px;
-    box-shadow: 0 5px 14px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 14px rgba(0, 0, 0, 0.12);
 }
 
-/* ===== JUDUL PANEL ===== */
 .panel h2 {
     font-family: 'Fredoka One', cursive;
     color: #7b3eff;
+    margin-top: 0;
 }
 
-/* ===== GRID MAKANAN ===== */
+/* =========================================================
+   GRID MAKANAN
+========================================================= */
 .makanan-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
@@ -58,29 +68,38 @@ header.top {
     margin-top: 15px;
 }
 
-/* ===== ITEM MAKANAN ===== */
+/* =========================================================
+   ITEM MAKANAN
+========================================================= */
 .makanan-item {
     background: white;
     border-radius: 16px;
     padding: 12px;
     cursor: pointer;
     text-align: center;
-    transition: 0.25s ease;
     border: 3px solid transparent;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.2s ease;
 }
 
 .makanan-item:hover {
-    transform: scale(1.05);
+    transform: scale(1.06);
     border-color: #ff9de2;
 }
 
-/* Efek klik */
 .makanan-item:active {
     transform: scale(0.92);
     box-shadow: 0 0 18px rgba(255, 150, 200, 0.8);
 }
 
-/* ===== INPUT & SELECT ===== */
+/* POP ANIMATION CLASS */
+.makanan-item.pop {
+    transform: scale(1.15);
+    box-shadow: 0 0 15px rgba(255, 200, 240, 0.6);
+}
+
+/* =========================================================
+   INPUT & SELECT
+========================================================= */
 input, select {
     width: 100%;
     padding: 12px;
@@ -89,9 +108,18 @@ input, select {
     border: 2px solid #d8c8ff;
     font-size: 16px;
     background: #fff;
+    outline: none;
+    transition: 0.2s ease;
 }
 
-/* ===== TOMBOL ===== */
+input:focus, select:focus {
+    border-color: #b08cff;
+    box-shadow: 0 0 8px rgba(176, 140, 255, 0.4);
+}
+
+/* =========================================================
+   BUTTON
+========================================================= */
 button {
     background: linear-gradient(135deg, #ff9de2, #c4b5fd);
     border: none;
@@ -110,7 +138,9 @@ button:hover {
     box-shadow: 0 0 12px rgba(255, 200, 255, 0.8);
 }
 
-/* ===== HASIL BOX ===== */
+/* =========================================================
+   HASIL BOX
+========================================================= */
 .hasil-box {
     background: #fff;
     border-radius: 16px;
@@ -120,7 +150,9 @@ button:hover {
     font-size: 16px;
 }
 
-/* ===== FOOTER ===== */
+/* =========================================================
+   FOOTER
+========================================================= */
 .footer {
     text-align: center;
     padding: 15px;
@@ -128,7 +160,9 @@ button:hover {
     font-size: 14px;
 }
 
-/* ===== PROGRESS BAR (Optional) ===== */
+/* =========================================================
+   PROGRESS BAR
+========================================================= */
 .progress {
     width: 100%;
     height: 18px;
@@ -143,18 +177,4 @@ button:hover {
     width: 0%;
     background: linear-gradient(90deg, #ff7ad9, #c084fc);
     transition: width 0.4s ease;
-}
-
-/* === Animasi Pop Saat Klik === */
-.makanan-item {
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
-}
-
-.makanan-item.pop {
-    transform: scale(1.15);
-    box-shadow: 0 0 15px rgba(255, 200, 240, 0.6);
-}
-
-.makanan-item {
-    cursor: pointer;
 }
