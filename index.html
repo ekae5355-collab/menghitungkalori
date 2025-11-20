@@ -1,1 +1,55 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hitung Kalori Bekal Harian</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+<header class="top">
+    <h1>🍱 Hitung Kalori Bekal Harian</h1>
+</header>
+
+<main class="container">
+    
+    <!-- PILIH MAKANAN -->
+    <section class="panel">
+        <h2>Pilih Isi Bekal</h2>
+        <div id="makananList" class="makanan-grid"></div>
+    </section>
+
+    <!-- TARGET & AKTIVITAS -->
+    <section class="panel">
+        <h2>Input Target</h2>
+
+        <label>Target Kalori Harian (kcal)</label>
+        <input id="targetKalori" type="number" placeholder="Contoh: 600" />
+
+        <label>Aktivitas Hari Ini</label>
+        <select id="aktivitas">
+            <option value="ringan">✨ Aktivitas Ringan (sekolah, duduk)</option>
+            <option value="sedang">🏃 Aktivitas Sedang (jalan cepat)</option>
+            <option value="berat">🔥 Aktivitas Berat (olahraga, lari)</option>
+        </select>
+
+        <button id="hitungBtn">Hitung Kalori</button>
+    </section>
+
+    <!-- HASIL -->
+    <section class="panel">
+        <h2>Hasil Perhitungan</h2>
+        <div id="hasil" class="hasil-box">Belum ada perhitungan.</div>
+    </section>
+
+</main>
+
+<footer class="footer">
+    Aplikasi hitung kalori bekal — cute & ringan 🍓✨
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
 
