@@ -18,7 +18,7 @@ const makanan = [
 const makananList = document.getElementById("makananList");
 const totalDisplay = document.getElementById("totalKalori");
 let totalKalori = 0;
-let selectedItems = new Set(); // untuk track makanan yang dipilih
+let selectedItems = new Set();
 
 // ====== RENDER MAKANAN KE HTML ======
 makanan.forEach((item, index) => {
@@ -73,11 +73,11 @@ document.getElementById("hitungBtn").addEventListener("click", () => {
         pesan = "Bekal kamu seimbang! Bagus untuk menjalani aktivitas harian.";
     }
 
-    // saran aktivitas
+    // saran aktivitas berdasarkan keadaan hari ini
     let saranAktivitas = "";
     if (aktivitas === "ringan") {
         saranAktivitas = 
-            "🌼 Aktivitasmu hari ini <b>ringan</b>. Tubuh tidak butuh terlalu banyak kalori.<br><br>" +
+            "🌼 Keadaanmu hari ini <b>ringan</b>. Tubuh tidak butuh terlalu banyak kalori.<br><br>" +
             "➤ Rekomendasi aktivitas:<br>" +
             "• 🚶‍♀️ Jalan santai 10–15 menit<br>" +
             "• 🧘‍♀️ Stretching ringan<br>" +
@@ -85,7 +85,7 @@ document.getElementById("hitungBtn").addEventListener("click", () => {
     }
     else if (aktivitas === "sedang") {
         saranAktivitas = 
-            "🌸 Aktivitas sedang, kalori cukup seimbang.<br><br>" +
+            "🌸 Keadaanmu <b>sedang</b>. Kalori cukup seimbang.<br><br>" +
             "➤ Rekomendasi aktivitas:<br>" +
             "• 🚴‍♂️ Bersepeda ringan 20–30 menit<br>" +
             "• 🤸‍♀️ Senam ringan<br>" +
@@ -93,7 +93,7 @@ document.getElementById("hitungBtn").addEventListener("click", () => {
     }
     else {
         saranAktivitas = 
-            "🔥 Aktivitas berat, butuh energi ekstra.<br><br>" +
+            "🔥 Keadaanmu <b>aktif/berat</b>. Butuh energi ekstra.<br><br>" +
             "➤ Rekomendasi aktivitas:<br>" +
             "• 🏃‍♂️ Olahraga intens 30 menit<br>" +
             "• 💪 Latihan kekuatan<br>" +
@@ -106,7 +106,7 @@ document.getElementById("hitungBtn").addEventListener("click", () => {
         <p><strong>${kategori}</strong></p>
         <p>${pesan}</p>
         <div class="saran">
-            <strong>Saran berdasarkan aktivitas:</strong><br>${saranAktivitas}
+            <strong>Saran berdasarkan keadaan hari ini:</strong><br>${saranAktivitas}
         </div>
     `;
 });
