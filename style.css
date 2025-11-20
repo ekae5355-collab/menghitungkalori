@@ -5,18 +5,28 @@
   box-sizing: border-box;
 }
 
+/* 🌈 BACKGROUND PELANGI PASTEL BERGANTIAN */
 body {
-  background: linear-gradient(135deg, #ffe6f2, #e3f1ff);
-  background-size: 200% 200%;
-  animation: swapColor 10s ease-in-out infinite;
+  background: linear-gradient(
+    135deg,
+    #ffd6e7,  /* pink pastel */
+    #ffeecb,  /* peach pastel */
+    #e7ffd9,  /* hijau soft */
+    #d9ecff,  /* biru pastel */
+    #ead9ff   /* ungu pastel */
+  );
+  background-size: 400% 400%;
+  animation: rainbowFlow 12s ease-in-out infinite;
   padding-bottom: 50px;
 }
 
-@keyframes swapColor {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+/* 🌈 Animasi bergerak seperti pelangi mengalir */
+@keyframes rainbowFlow {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
+
 @keyframes softMove {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
