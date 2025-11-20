@@ -1,4 +1,6 @@
-// ====== DATA MAKANAN ======
+// =========================
+// DATA MAKANAN
+// =========================
 const makanan = [
     { nama: "🍗 Ayam Goreng", kalori: 260 },
     { nama: "🥚 Telur Rebus", kalori: 78 },
@@ -16,21 +18,23 @@ const makanan = [
 ];
 
 const makananList = document.getElementById("makananList");
-const totalDisplay = document.getElementById("totalKalori");
 let totalKalori = 0;
 let selectedItems = new Set();
 
-// ====== RENDER MAKANAN KE HTML ======
+
+// =========================
+// RENDER ITEM MAKANAN KE HTML
+// =========================
 makanan.forEach((item, index) => {
     const div = document.createElement("div");
     div.className = "makanan-item";
+
     div.innerHTML = `
-        <div class="icon">${item.nama.split(" ")[0]}</div>
-        <div>${item.nama.replace(/^[^\s]+/, "")}</div>
+        <div class="icon" style="font-size:32px">${item.nama.split(" ")[0]}</div>
+        <div style="margin-top:5px">${item.nama.replace(/^[^\s]+/, "")}</div>
         <small>${item.kalori} kcal</small>
     `;
 
-    // klik makanan → toggle pilih/unselect
     div.addEventListener("click", () => {
         if (selectedItems.has(index)) {
             selectedItems.delete(index);
@@ -41,72 +45,117 @@ makanan.forEach((item, index) => {
             totalKalori += item.kalori;
             div.classList.add("selected");
         }
-        // update total kalori realtime
-        totalDisplay.textContent = `Total Kalori: ${totalKalori} kcal`;
+
+        updateTotalDisplay();
     });
 
     makananList.appendChild(div);
 });
 
-// ====== TOMBOL HITUNG ======
+
+// =========================
+// UPDATE TOTAL KALORI REALTIME
+// =========================
+function updateTotalDisplay() {
+    const hasilBox = document.getElementById("hasil");
+    hasilBox.innerHTML = `
+        <h3>Total Kalori Sementara: ${totalKalori} kcal</h3>
+    `;
+
+    updateProgress();
+}
+
+
+// =========================
+// PROGRESS BAR
+// =========================
+function updateProgress() {
+    const target = Number(document.getElementById("targetKalori").value);
+    const fill = document.getElementById("progressFill");
+
+    if (!target) {
+        fill.style.width = "0%";
+        return;
+    }
+
+    let persen = (totalKalori / target) * 100;
+    if (persen > 100) persen = 100;
+
+    fill.style.width = persen + "%";
+}
+
+
+// =========================
+// TOMBOL HITUNG
+// =========================
 document.getElementById("hitungBtn").addEventListener("click", () => {
     const target = Number(document.getElementById("targetKalori").value);
-    const aktivitas = document.getElementById("aktivitas").value;
+    const kondisi = document.getElementById("aktivitas").value;
     const hasilArea = document.getElementById("hasil");
 
     if (!target) return alert("Isi target kalori dulu!");
 
-    // kategori kalori
+    // Penilaian
     let kategori = "";
     let pesan = "";
 
     if (totalKalori < target - 100) {
         kategori = "Kalori Kurang ❗";
-        pesan = "Bekal kamu masih kurang. Tambahkan makanan berkarbohidrat seperti nasi, roti, atau ayam.";
+        pesan = "Bekal kamu masih kurang nih. Tambahin makanan seperti nasi, roti, atau ayam biar kuat seharian 💪";
     } 
     else if (totalKalori > target + 100) {
-        kategori = "Kalori Terlalu Banyak ⚠️";
-        pesan = "Bekal kamu terlalu banyak kalori. Kurangi gorengan dan pilih makanan berprotein ringan.";
+        kategori = "Kalori Kebanyakan ⚠️";
+        pesan = "Kalorinya agak berlebih… Kurangi gorengan atau pilih makanan lebih ringan 😊";
     } 
     else {
         kategori = "Kalori Pas 👍";
-        pesan = "Bekal kamu seimbang! Bagus untuk menjalani aktivitas harian.";
+        pesan = "Bekal kamu udah pas dan seimbang! Mantap buat menjalani hari ✨";
     }
 
-    // saran aktivitas berdasarkan keadaan hari ini
+    // Saran berdasarkan keadaan hari ini
     let saranAktivitas = "";
-    if (aktivitas === "ringan") {
-        saranAktivitas = 
-            "🌼 Keadaanmu hari ini <b>ringan</b>. Tubuh tidak butuh terlalu banyak kalori.<br><br>" +
-            "➤ Rekomendasi aktivitas:<br>" +
-            "• 🚶‍♀️ Jalan santai 10–15 menit<br>" +
-            "• 🧘‍♀️ Stretching ringan<br>" +
-            "• 💧 Banyak minum air putih<br>";
+
+    if (kondisi === "ringan") {
+        saranAktivitas = `
+            Hari kamu kelihatannya santai 😌<br>
+            Rekomendasi ringan:<br>
+            • Jalan pelan 10 menit<br>
+            • Stretching<br>
+            • Minum air putih cukup 💧
+        `;
     }
-    else if (aktivitas === "sedang") {
-        saranAktivitas = 
-            "🌸 Keadaanmu <b>sedang</b>. Kalori cukup seimbang.<br><br>" +
-            "➤ Rekomendasi aktivitas:<br>" +
-            "• 🚴‍♂️ Bersepeda ringan 20–30 menit<br>" +
-            "• 🤸‍♀️ Senam ringan<br>" +
-            "• 🍎 Makan buah untuk energi tambahan<br>";
+    else if (kondisi === "sedang") {
+        saranAktivitas = `
+            Hari ini cukup aktif ✨<br>
+            Rekomendasi:<br>
+            • Senam ringan<br>
+            • Bersepeda ringan<br>
+            • Makan buah untuk tenaga 🍎
+        `;
     }
     else {
-        saranAktivitas = 
-            "🔥 Keadaanmu <b>aktif/berat</b>. Butuh energi ekstra.<br><br>" +
-            "➤ Rekomendasi aktivitas:<br>" +
-            "• 🏃‍♂️ Olahraga intens 30 menit<br>" +
-            "• 💪 Latihan kekuatan<br>" +
-            "• 🍗 Makan protein cukup<br>";
+        saranAktivitas = `
+            Wah, hari kamu berat ya 🔥<br>
+            Rekomendasi aktivitas:<br>
+            • Olahraga 20–30 menit<br>
+            • Latihan kekuatan<br>
+            • Asupan protein cukup 🍗
+        `;
     }
 
-    // output final
+    // Output ke layar
     hasilArea.innerHTML = `
         <h3>Total Kalori: ${totalKalori} kcal</h3>
         <p><strong>${kategori}</strong></p>
         <p>${pesan}</p>
-        <div class="saran">
-            <strong>Saran berdasarkan keadaan hari ini:</strong><br>${saranAktivitas}
+
+        <div class="progress">
+            <div id="progressFill"></div>
+        </div>
+
+        <div class="saran" style="margin-top:10px">
+            <strong>Saran berdasarkan keadaan hari ini:</strong><br>
+            ${saranAktivitas}
         </div>
     `;
 });
