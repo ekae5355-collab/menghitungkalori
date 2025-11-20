@@ -1,3 +1,7 @@
+// ==== Suara Klik ====
+const clickSound = new Audio("click.mp3");
+clickSound.volume = 0.5;
+
 // =========================
 // DATA MAKANAN
 // =========================
@@ -20,6 +24,12 @@ const makanan = [
 const makananList = document.getElementById("makananList");
 let totalKalori = 0;
 let selectedItems = new Set();
+function updateTotalDisplay() {
+    const totalDisplay = document.getElementById("totalKalori");
+    if (totalDisplay) {
+        totalDisplay.textContent = `Total Kalori: ${totalKalori} kcal`;
+    }
+}
 
 
 // =========================
@@ -36,6 +46,14 @@ makanan.forEach((item, index) => {
     `;
 
     div.addEventListener("click", () => {
+        // === Efek suara ===
+    clickSound.currentTime = 0;
+    clickSound.play();
+
+    // === Animasi pop ===
+    div.classList.add("pop");
+    setTimeout(() => div.classList.remove("pop"), 200);
+        
         if (selectedItems.has(index)) {
             selectedItems.delete(index);
             totalKalori -= item.kalori;
