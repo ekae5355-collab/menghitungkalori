@@ -144,3 +144,13 @@ button:hover {
     background: linear-gradient(90deg, #ff7ad9, #c084fc);
     transition: width 0.4s ease;
 }
+
+/* === Animasi Pop Saat Klik === */
+.makanan-item {
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.makanan-item.pop {
+    transform: scale(1.15);
+    box-shadow: 0 0 15px rgba(255, 200, 240, 0.6);
+}
