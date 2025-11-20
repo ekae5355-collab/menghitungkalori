@@ -4,10 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hitung Kalori Bekal Harian</title>
-    <!-- 1️⃣ Tambahkan Google Fonts di sini -->
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-
-    <!-- 2️⃣ File CSS -->
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -16,27 +14,25 @@
 </header>
 
 <main class="container">
-    
     <!-- PILIH MAKANAN -->
     <section class="panel">
         <h2>Pilih Isi Bekal</h2>
         <div id="makananList" class="makanan-grid"></div>
-        <!-- Total Kalori Realtime -->
         <p id="totalKalori" style="margin-top: 10px; font-weight: bold;">Total Kalori: 0 kcal</p>
     </section>
 
-    <!-- TARGET & AKTIVITAS -->
+    <!-- TARGET & KEADAAN HARI INI -->
     <section class="panel">
-        <h2>Input Target</h2>
+        <h2>Input Target & Keadaan Hari Ini</h2>
 
         <label>Target Kalori Harian (kcal)</label>
         <input id="targetKalori" type="number" placeholder="Contoh: 600" />
 
-        <label>Aktivitas Hari Ini</label>
+        <label>Bagaimana keadaanmu hari ini?</label>
         <select id="aktivitas">
-            <option value="ringan">✨ Aktivitas Ringan (sekolah, duduk)</option>
-            <option value="sedang">🏃 Aktivitas Sedang (jalan cepat)</option>
-            <option value="berat">🔥 Aktivitas Berat (olahraga, lari)</option>
+            <option value="ringan">✨ Santai / Duduk (ringan)</option>
+            <option value="sedang">🏃 Sedang bergerak / Jalan cepat (sedang)</option>
+            <option value="berat">🔥 Sibuk / Banyak bergerak (berat)</option>
         </select>
 
         <button id="hitungBtn">Hitung Kalori</button>
@@ -47,14 +43,12 @@
         <h2>Hasil Perhitungan</h2>
         <div id="hasil" class="hasil-box">Belum ada perhitungan.</div>
     </section>
-
 </main>
 
 <footer class="footer">
-    Aplikasi hitung kalori bekal sehari hari 🍓✨
+    Aplikasi hitung kalori bekal sehari-hari 🍓✨
 </footer>
 
 <script src="script.js"></script>
 </body>
 </html>
-
