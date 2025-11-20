@@ -5,7 +5,7 @@
   box-sizing: border-box;
 }
 
-/* 🌈 BACKGROUND PELANGI PASTEL BERGANTIAN */
+/* 🌈 BACKGROUND PELANGI PASTEL BERGERAK */
 body {
   background: linear-gradient(
     135deg,
@@ -20,19 +20,14 @@ body {
   padding-bottom: 50px;
 }
 
-/* 🌈 Animasi bergerak seperti pelangi mengalir */
+/* 🌈 Animasi pelangi */
 @keyframes rainbowFlow {
   0%   { background-position: 0% 50%; }
   50%  { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
 
-@keyframes softMove {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
+/* 🌸 HEADER */
 .top h1 {
   text-align: center;
   padding: 25px 10px;
@@ -41,12 +36,14 @@ body {
   text-shadow: 2px 2px white;
 }
 
+/* 🌼 CONTAINER */
 .container {
   max-width: 750px;
   margin: auto;
   padding: 15px;
 }
 
+/* 💖 PANEL GLASSMORPHISM */
 .panel {
   background: rgba(255,255,255,0.58);
   padding: 20px;
@@ -63,12 +60,14 @@ body {
   letter-spacing: 1px;
 }
 
+/* 🧁 GRID MAKANAN */
 .makanan-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
   gap: 15px;
 }
 
+/* 🍡 CARD MAKANAN */
 .makanan-item {
   background: white;
   padding: 15px;
@@ -97,6 +96,7 @@ body {
   100% { transform: scale(1); }
 }
 
+/* 🍬 INPUT & SELECT */
 input, select {
   width: 100%;
   padding: 12px;
@@ -113,6 +113,7 @@ input:focus, select:focus {
   box-shadow: 0 3px 12px rgba(255,120,180,0.25);
 }
 
+/* 💜 BUTTON */
 button {
   width: 100%;
   padding: 14px;
@@ -131,6 +132,7 @@ button:hover {
   background: linear-gradient(135deg, #ff74ce, #ff57c4);
 }
 
+/* 💗 BOX HASIL */
 .hasil-box {
   background: white;
   padding: 18px;
@@ -140,6 +142,7 @@ button:hover {
   line-height: 1.6;
 }
 
+/* 🩷 FOOTER */
 .footer {
   text-align: center;
   margin-top: 20px;
