@@ -6,18 +6,23 @@
 }
 
 body {
-  background: linear-gradient(135deg, #ffd8e8, #ffe8f2, #fff2fa);
-  background-size: 400% 400%;
-  animation: softMove 12s ease-in-out infinite;
+  background: linear-gradient(135deg, #ffe6f2, #e3f1ff);
+  background-size: 200% 200%;
+  animation: swapColor 10s ease-in-out infinite;
+  padding-bottom: 50px;
 }
 
+@keyframes swapColor {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 @keyframes softMove {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
 
-/* 💕 HEADER */
 .top h1 {
   text-align: center;
   padding: 25px 10px;
@@ -26,7 +31,6 @@ body {
   text-shadow: 2px 2px white;
 }
 
-/* 🎀 CONTAINER */
 .container {
   max-width: 750px;
   margin: auto;
